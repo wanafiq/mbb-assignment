@@ -1,0 +1,11 @@
+
+logging:
+  level:
+    root: info
+    com.example.assignment: debug
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/assignment?createDatabaseIfNotExist=true
+    username: root
+    password: toor

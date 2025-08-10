@@ -1,0 +1,7 @@
+
+spring:
+  application:
+    name: assignment
+  profiles:
+    default: dev
+    active: dev
