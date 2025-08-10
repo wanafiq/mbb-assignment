@@ -12,6 +12,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ResourceLockedException.class)
+    public ResponseEntity<String> handleResourceLockedException(ResourceLockedException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGenericException(Exception ex) {
         return new ResponseEntity<>("Internal Server Error: ", HttpStatus.INTERNAL_SERVER_ERROR);

@@ -75,7 +75,6 @@ public class TransactionProcessor {
             boolean isFirstLine = true;
             
             while ((line = reader.readLine()) != null) {
-                // Skip header line if it contains column names
                 if (isFirstLine && isHeader(line)) {
                     isFirstLine = false;
                     continue;
@@ -103,13 +102,11 @@ public class TransactionProcessor {
 
                     transactions.add(trx);
 
-                    // Process in batches
                     if (transactions.size() >= BATCH_SIZE) {
                         trxRepo.saveAll(transactions);
                         totalProcessed += transactions.size();
                         log.info("Processed batch: {} transactions", transactions.size());
-                        
-                        // Update job progress
+
                         job.setStatus("processing");
                         jobRepo.save(job);
                         
