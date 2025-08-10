@@ -9,3 +9,9 @@ spring:
     url: jdbc:mysql://localhost:3306/assignment?createDatabaseIfNotExist=true
     username: root
     password: toor
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    enabled: true
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}

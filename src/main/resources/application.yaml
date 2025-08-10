@@ -4,4 +4,4 @@ spring:
     name: assignment
   profiles:
     default: dev
-    active: dev
+    active: dev, test
