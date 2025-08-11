@@ -1,24 +1,56 @@
 package com.example.assignment.web.exceptions;
 
+import com.example.assignment.web.dto.ErrorDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ErrorDTO> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        ErrorDTO error = ErrorDTO.builder()
+                .status(HttpStatus.NOT_FOUND.value())
+                .messsage(ex.getMessage())
+                .build();
+
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(ResourceLockedException.class)
-    public ResponseEntity<String> handleResourceLockedException(ResourceLockedException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+    public ResponseEntity<ErrorDTO> handleResourceLockedException(ResourceLockedException ex) {
+        ErrorDTO error = ErrorDTO.builder()
+                .status(HttpStatus.CONFLICT.value())
+                .messsage(ex.getMessage())
+                .build();
+
+        return new ResponseEntity<>(error, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorDTO> handleValidationException(MethodArgumentNotValidException ex) {
+        String message = ex.getBindingResult().getFieldErrors().stream()
+                .map(error -> error.getDefaultMessage())
+                .findFirst()
+                .orElse("Validation failed");
+
+        ErrorDTO error = ErrorDTO.builder()
+                .status(HttpStatus.BAD_REQUEST.value())
+                .messsage(message)
+                .build();
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleGenericException(Exception ex) {
-        return new ResponseEntity<>("Internal Server Error: ", HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ErrorDTO> handleGenericException(Exception ex) {
+        ErrorDTO error = ErrorDTO.builder()
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .messsage("Internal Server Error")
+                .build();
+
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
