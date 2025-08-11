@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "2015ebc2-ec8a-4505-aad9-0aa0aa4040a5",
+		"name": "Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34465761"
+	},
+	"item": [
+		{
+			"name": "get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filter by customer id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/transactions?customerId=222&page=0&size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "222"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "accountNo",
+							"value": "8872838283",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filter by description",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/transactions?description=TRANSFER",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "accountNo",
+							"value": "8872838283",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "TRANSFER"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "combine filters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/transactions?customerId=333&accountNo=6872838260&description=FUND TRANSFER",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "333"
+						},
+						{
+							"key": "accountNo",
+							"value": "6872838260"
+						},
+						{
+							"key": "description",
+							"value": "FUND TRANSFER"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sort by amount",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/transactions?sort=amount,desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "amount,desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update description",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"Updated transaction description\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/transactions/1955b500-3a6c-451c-9590-2324be790997",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"transactions",
+						"1955b500-3a6c-451c-9590-2324be790997"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

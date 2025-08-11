@@ -48,6 +48,9 @@ The application will start on `http://localhost:8080` with:
 mvn test
 ```
 
+### Postman collection
+Import `./postman/Assignment.postman_collection.json` to test all API endpoints with pre-configured requests.
+
 ## Build
 
 ### Build JAR File
