@@ -114,7 +114,7 @@ Implements pessimistic locking for concurrent transaction updates:
 ```
 Client Request → Acquire Redis Lock → Update Database → Release Lock → Return Response
                       ↓ (if lock fails)
-                 Retry Logic (10x) → Success/ResourceLockedException
+                 Retry Logic (10x) → Success / ResourceLockedException
 ```
 
 ## API Endpoints
