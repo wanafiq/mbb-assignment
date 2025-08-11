@@ -15,9 +15,9 @@ public class JobLog extends Audit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "filename",  length = 100, nullable = false)
+    @Column(name = "filename", length = 100, nullable = false)
     private String fileName;
 
-    @Column(name = "status",  length = 20, nullable = false)
+    @Column(name = "status", length = 20, nullable = false)
     private String status;
 }

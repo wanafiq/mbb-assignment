@@ -13,7 +13,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorDTO> handleResourceNotFoundException(ResourceNotFoundException ex) {
         ErrorDTO error = ErrorDTO.builder()
                 .status(HttpStatus.NOT_FOUND.value())
-                .messsage(ex.getMessage())
+                .message(ex.getMessage())
                 .build();
 
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorDTO> handleResourceLockedException(ResourceLockedException ex) {
         ErrorDTO error = ErrorDTO.builder()
                 .status(HttpStatus.CONFLICT.value())
-                .messsage(ex.getMessage())
+                .message(ex.getMessage())
                 .build();
 
         return new ResponseEntity<>(error, HttpStatus.CONFLICT);
@@ -38,7 +38,7 @@ public class GlobalExceptionHandler {
 
         ErrorDTO error = ErrorDTO.builder()
                 .status(HttpStatus.BAD_REQUEST.value())
-                .messsage(message)
+                .message(message)
                 .build();
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
@@ -48,7 +48,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorDTO> handleGenericException(Exception ex) {
         ErrorDTO error = ErrorDTO.builder()
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                .messsage("Internal Server Error")
+                .message("Internal Server Error")
                 .build();
 
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
