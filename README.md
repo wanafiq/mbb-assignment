@@ -11,6 +11,17 @@ A Spring Boot application that process transaction file.
 - **Java**: JDK 21
 - **Migration**: Flyway for database schema management
 
+## Design Choices
+- **Builder Pattern**: 
+  - improve code readability by avoiding large, cluttered constructors
+
+- **Pessimistic Locking with Redis**
+  - locks at the application level, not directly in the database
+  - prevent other application from modifying resource until the lock is released
+  - suitable for multi-instance application that is running with kubernetes
+  - simpler to implement compared to `Optimistic Locking` which requires versioning
+    fields and conflict detection logic
+
 ## Getting Started
 
 ### Prerequisites
