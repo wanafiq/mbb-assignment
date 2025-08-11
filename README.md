@@ -48,21 +48,6 @@ The application will start on `http://localhost:8080` with:
 mvn test
 ```
 
-### Run Specific Test Classes
-```bash
-# Run repository tests
-mvn test -Dtest=*RepositoryTests
-
-# Run specific test class
-mvn test -Dtest=TransactionControllerTests
-```
-
-### Test Profiles
-Tests automatically use H2 in-memory database and test profile:
-```bash
-mvn test -Dspring.profiles.active=test
-```
-
 ## Build
 
 ### Build JAR File
@@ -120,7 +105,7 @@ Client Request → Acquire Redis Lock → Update Database → Release Lock → R
 ## API Endpoints
 
 #### GET http://localhost:8080/api/v1/transactions
-Search transactions with pagination and filtering.
+Search transactions with pagination and filtering
 
 **Query Parameters**:
 - `customerId` (Long, optional): Filter by customer ID
@@ -131,7 +116,7 @@ Search transactions with pagination and filtering.
 - `sort` (String, optional, default: "date,desc"): Sort criteria
 
 #### PUT http://localhost:8080/api/v1/transactions/{id}
-Update transaction description with concurrent update protection.
+Update transaction description
 
 **Path Parameters**:
 - `id` (String, required): Transaction ID
@@ -142,3 +127,8 @@ Update transaction description with concurrent update protection.
   "description": "Updated transaction description"
 }
 ```
+
+### What to improve
+- use [Quartz](https://www.quartz-scheduler.org) for more advance job scheduler
+- implement database index for better query performance on large dataset
+- add bulk update API for batch transaction updates
